@@ -1,5 +1,6 @@
 # WDMMG?
-Where did my money go? Or WDMMG in short, is a web app that allows users to track and categorise their expenses. 
+Where did my money go? Or WDMMG in short, is a web app that allows users to track and categorise their expenses. </br>
+Click [here](https://www.youtube.com/watch?v=VvKsG-Wtgtw) for the demo video 
 
 ## Installation & Usage 
 1. Download this repo
