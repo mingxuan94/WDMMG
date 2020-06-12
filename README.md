@@ -1,8 +1,15 @@
-WDMMG?
-
+# WDMMG?
 Where did my money go? Or WDMMG in short, is a web app that allows users to track and categorise their expenses. 
 
-It comes along with an in built Bot that enables the App to automatically download and store your Online E-commerce expenses in a database! 
+## Installation & Usage 
+1. Download this repo
+2. Pip install requirements.txt
+3. Change working directory to this folder
+3. Run `flask run` on command line
+
+## Project description
+
+WDMMG comes along with an in built Bot that enables the App to automatically download and store your Online E-commerce expenses in a database! 
 This functionality saves users the hassle of having to manually log in expenses one by one (Good news for shopaholics out there!), as this process will be fully automated. 
 This Bot currently supports Online E-commerce platforms Lazada and Shopee. 
 
