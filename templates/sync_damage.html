@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Import Damage
+{% endblock %}
+
+{% block main %}
+<form action="/sync_damage" method="post">
+    <div class="form-group">
+        My Orders from
+    </div>
+    <div class="form-group">
+        
+        <select class="form-control" name="platform">
+            <option selected value="Lazada">Lazada</option>
+                <option value="Shopee">Shopee</option>
+        </select>
+    </div>
+    <div class="form-group">
+        In the Last
+    </div>
+    <div class="form-group">
+        <select class="form-control" name="time_period">
+            <option selected value="7">7 Days</option>
+                <option value="30">1 Month</option>
+                <option value="60">2 Months</option>
+                <option value="180">6 Months</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <button class="btn btn-primary" type="submit">Import Damage!</button>
+    </div>
+    
+    
+  
+
+    
+</form>
+{% endblock %}

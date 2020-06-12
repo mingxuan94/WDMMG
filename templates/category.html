@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Manage Categories
+{% endblock %}
+
+{% block main %}
+
+<form action="/category" method="post">
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" name="add_cat" placeholder="Add category" type="text">
+        <button class="btn btn-primary" type="submit" name="add" value="add">Add</button>
+        
+        <select class="form-control" name="remove_cat">
+            <option disabled selected value="">Remove Category</option>
+            
+            {% for category in categories %}
+                <option>{{category[0]}}</option>
+            {% endfor %} 
+        </select>
+    <button class="btn btn-primary" type="submit" name="remove" value="remove">Remove</button>
+    </div>
+
+    
+</form>
+
+<table align="center" valign="top" class="cat-table">
+    <thead>
+        <tr>
+            <th>Category</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for category in categories %}
+        <tr>
+            <td>{{category[0]}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if message %}
+<script type="text/javascript">
+    alert( '{{message}}' );
+</script>
+{% endif %}
+
+{% endblock %}

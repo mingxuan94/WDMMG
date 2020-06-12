@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+
+
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+
+<main class="container">
+    <form action="/" method="post">
+
+<div class="center">
+    <p>${{total_damage}} Damage in the last {{summary}} </p>
+
+  </div>
+<div>
+-------------------------                  
+</div>
+  
+
+<p align="left"> Damage in the last
+    <select class="form-control" name="filter-date" onchange="this.form.submit()">
+        {% for date in date_range %}
+        {% if select_date == date[0] %}
+        <option selected value="{{select_date}}" value="{{select_date}}">{{date[1]}}</option>
+        {% else %}
+        <option value="{{date[0]}}">{{date[1]}}</option>
+        {% endif %}
+        {% endfor %}
+    </select>
+</p>
+
+<p align="left"> Filter Categories: 
+    <select class="form-control" name="filter-cat" onchange="this.form.submit()">
+        {% if select_cat == "all" %}
+            <option selected value="{{select_cat}}" value="{{select_cat}}">All</option>
+            
+            {% for category in categories %}
+            <option value="{{category[0]}}">{{category[0]}}</option>
+            {% endfor %}
+
+        {% else %}
+            <option value="all">All</option>
+            {% for category in categories %}
+                {% if select_cat == category[0] %}
+                <option selected value="{{category[0]}}" value="{{category[0]}}">{{category[0]}}</option>
+                {% else %}
+                <option value="{{category[0]}}">{{category[0]}}</option>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    </select>
+</p>
+
+</form>
+</main>
+
+
+<div class="chart" id="linegraph">
+    <script>
+        var graphs = {{plot_line | safe}};
+        Plotly.plot('linegraph',graphs,{});
+    </script>
+</div>
+
+
+<div class="chart" id="bargraph">
+    <script>
+        var graphs = {{plot | safe}};
+        Plotly.plot('bargraph',graphs,{});
+    </script>
+</div>
+
+
+{% endblock %}

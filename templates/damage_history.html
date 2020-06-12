@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Damage History
+{% endblock %}
+
+{% block main %}
+
+<main class="container">
+    <form action="/damage_history" method="post">
+    <p align="left">
+        Damage in the last
+
+
+            <select class="form-control" name="history" onchange="this.form.submit()">
+                {% for date in date_range %}
+                {% if select_date == date[0] %}
+                <option selected value="{{select_date}}" value="{{select_date}}">{{date[1]}}</option>
+                {% else %}
+                <option value="{{date[0]}}">{{date[1]}}</option>
+                {% endif %}
+                {% endfor %}
+            </select>
+    </p>
+    <p align="left">
+        Filter Categories: 
+        <select class="form-control" name="filter-cat" onchange="this.form.submit()">
+            {% if select_category == "all" %}
+                <option selected value="{{select_category}}" value="{{select_category}}">All</option>
+                
+                {% for category in categories %}
+                <option value="{{category[0]}}">{{category[0]}}</option>
+                {% endfor %}
+
+            {% else %}
+                <option value="all">All</option>
+                {% for category in categories %}
+                    {% if select_category == category[0] %}
+                    <option selected value="{{category[0]}}" value="{{category[0]}}">{{category[0]}}</option>
+                    {% else %}
+                    <option value="{{category[0]}}">{{category[0]}}</option>
+                {% endif %}
+                {% endfor %}
+            {% endif %}
+
+
+        </select>
+
+        <button class="btn btn-primary" type="submit" >Update Damages</button></br>   
+   </p>        
+    
+    
+
+    
+    
+    <table class="table table-stripe">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Platform</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th>Damage</th>
+                <th><img src="/static/trash.png" height="15px" width="15px">
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for damage in damages %}
+            <tr>
+                <td>{{ damage[6] }}</td>
+                <td>{{ damage[2] }}</td>
+                <td>{{ damage[3] }}</td>
+                <td>
+                    
+                    <select class="form-control" name="{{damage[0]}}">
+                        <option selected value="no-updates" value="no-updates">{{ damage[4] }}</option>
+                        {% for category in categories %}
+                        {% if category != damage[4] %}
+                        <option value="{{category[0]}}"> {{category[0]}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                    
+                </td>
+                <td>${{ damage[5] }}</td>
+                <td>
+                    <input type="checkbox" name="{{damage[0]}}del" value="{{damage[0]}}">
+                        <!-- <button type="submit" name="remove" value="{{ damage[0] }}">
+                            Remove
+                        </button>  -->
+                        <!-- <button class="btn btn-primary" type="submit" name="update" value="{{ damage[0] }}">Update</button> -->
+                  
+                    
+                </td>
+            </tr>   
+            {% endfor %}
+        </tbody>
+
+    </table>
+</form>
+</main>
+
+{% endblock %}
