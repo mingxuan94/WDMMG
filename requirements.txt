@@ -1,6 +1,6 @@
 pysqlite3== 0.4.3 
 flask==1.1.2     
 flask_session==0.3.2  
-werkzeug==1.0.1 
+werkzeug==2.2.3 
 selenium==3.141.0 
 plotly==4.8.1
